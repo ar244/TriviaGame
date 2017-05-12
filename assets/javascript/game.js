@@ -9,8 +9,8 @@ $(document).ready(function(){
 
 	var intervalId;
 	var count;
-	var count1;
-   var running = false;
+	//var count1;
+   //var running = false;
 
 
 	var quiz = [ 
@@ -28,7 +28,28 @@ $(document).ready(function(){
 			 "India", "Brazil", "Egypt", "Indonesia",
 			 "India",
 			 "assets/images/Delhi.gif"
-			]
+			],
+			["In which city is the famous Parthenon located?",
+			"Rome", "Athens", "Shanghai", "Tokyo",
+			"Athens",
+			"assets/images/Athens.gif"
+			],
+			["Which city has a statue of Jesus towering over it?",
+			"Sao Paulo", "Mexico City", "Buenos Aires", "Rio De Janeiro",
+			"Rio De Janeiro",
+			"assets/images/Rio.gif"
+			],
+			["This city spawned an Empire that ruled most of Europe",
+			"Venice", "Amsterdam", "Rome", "Paris",
+			"Rome",
+			"assets/images/Rome.gif"
+			],
+			["Bangkok is a major city in which country?",
+			"Thailand", "Cambodia", "Singapore", "Indonesia",
+			"Thailand",
+			"assets/images/Bangkok.gif"
+			],
+
 	];
 
 	
@@ -111,28 +132,36 @@ $(document).ready(function(){
 			$("#quizBox").append(gif);
 			setTimeout(function() {
         		console.log("here");
-        		//$("#quizBox").empty();
+        		i++;
+				nextQ();	
+        		
     		}, 5000); 
 
 
 		} else {
 
 			wrong++;
+			tmp.text("Oops!! The correct answer is " + quiz[i][5]);
+			
+			$("#quizBox").append(tmp);
+			$("#quizBox").append(gif);
+			setTimeout(function() {
+        		console.log("here");
+        		i++;
+				nextQ();	
+        		
+    		}, 5000); 
+
 		}	
 		
-		// show answer and gif
-
-		i++;
-		nextQ();	
+			
 	});
 
 	
 
 	
 	var showResult = function() {
-		console.log(correct);
-		console.log(wrong);
-		console.log(incomplete);
+		
 		$("#mainBox").empty();
 		var done = $("<img>");
 		done.attr("id", "done");
@@ -153,18 +182,35 @@ $(document).ready(function(){
 		i.attr("id", "incomplete");
 		i.text("Incomplete answers: " + incomplete);
 
+		var s = $("<button>");
+		s.attr("id", "startOver");
+		s.text("Start Over?");
+
 		// append above
 		$("#mainBox").append(done);
 		$("#mainBox").append(rBox);
 		$("#rBox").append(c);
-			$("#rBox").append(w);
-				$("#rBox").append(i);
+		$("#rBox").append(w);
+		$("#rBox").append(i);
+		$("#mainBox").append(s);
 
 	}
 
 	// Start the quiz
 	$("#start").click(function() {
 		i=0;
+		nextQ();
+	});
+
+	// Start the quiz over
+	$("#startOver").click(function() {
+		// reset variables
+		i=0;
+		correct = 0;
+		wrong = 0;
+		incomplete = 0;
+		qNumber = 0;
+
 		nextQ();
 	});
 
