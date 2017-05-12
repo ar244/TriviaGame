@@ -48,9 +48,9 @@ $(document).ready(function(){
 			"Thailand", "Cambodia", "Singapore", "Indonesia",
 			"Thailand",
 			"assets/images/Bangkok.gif"
-			],
+			]
 
-	];
+	]; 
 
 	
 	
@@ -69,10 +69,26 @@ $(document).ready(function(){
 		intervalId = setInterval(function () {
 			count--; 
 			if (count === 0) {
-				i++;
+				//i++;
 				incomplete++;
+				// show correct answer
+				$("#quizBox").empty();
+				var tmp = $("<div>");
+				tmp.attr("id", "tmpAns");
+				var gif = $("<img>");
+				gif.attr("id", "gif");
+				gif.attr("src", quiz[i][6]);
+
+				tmp.text("The correct answer is " + quiz[i][5]);
+				i++;
+				$("#quizBox").append(tmp);
+				$("#quizBox").append(gif);
 				clearInterval(intervalId);
-				nextQ();	
+				setTimeout(function() {
+        			
+					nextQ();	
+        		}, 5000); 
+				
 			}
 			$(time).html("<div class='text-center' id='timer'>Time left: " + count +"</div>");
 			}, 1000);
@@ -131,7 +147,6 @@ $(document).ready(function(){
 			$("#quizBox").append(tmp);
 			$("#quizBox").append(gif);
 			setTimeout(function() {
-        		console.log("here");
         		i++;
 				nextQ();	
         		
@@ -203,14 +218,14 @@ $(document).ready(function(){
 	});
 
 	// Start the quiz over
-	$("#startOver").click(function() {
+	$(document).on("click", "#startOver", function() {
 		// reset variables
 		i=0;
 		correct = 0;
 		wrong = 0;
 		incomplete = 0;
 		qNumber = 0;
-
+		console.log("start over");
 		nextQ();
 	});
 
