@@ -12,9 +12,9 @@ body {
 #globe {
 	width: 60px;
 	height: 60px;
-	position: absolute;
-	left: 100px;
-	top: 10px;
+	float: left;
+	margin-left: 40px;
+	margin-top:10px;
 	background-color: black;
 
 }
@@ -71,6 +71,10 @@ h2 {
 	font-size: 20px;
 }
 
+#startOver:hover {
+	background-color: blue;
+}
+
 #eiffel, #sol {
 	width: 100px;
 	height: 150px;
@@ -86,13 +90,13 @@ h2 {
 
 #timer {
 	font-size: 40px;
+	display:inline-block;
+	width: 50%;
 	margin-bottom: 50px;
 	margin-top: 50px;
-	margin-left: 100px;
-	margin-right: 100px;
 	border: 2px solid;
 	border-radius: 25px;
-	
+	padding-top: 10px;
 	box-shadow: 10px 5px 5px blue;
 }
 
@@ -141,7 +145,7 @@ input {
 	opacity: 1;
 	margin-right:20px;
 	margin-left: 20px;
-	margin-top: 50px;
+	margin-top: 70px;
 	border: 2px solid;
 	border-radius: 25px;
 	
